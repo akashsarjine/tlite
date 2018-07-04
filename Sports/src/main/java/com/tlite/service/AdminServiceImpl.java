@@ -41,7 +41,9 @@ public class AdminServiceImpl implements AdminService {
 	@Transactional
 	public Client getClientById(int client_id) {
 		
-		return this.adminDao.getClientById(client_id);
+		Client client=this.adminDao.getClientById(client_id);
+		
+		return client;
 	}
 
 	@Override

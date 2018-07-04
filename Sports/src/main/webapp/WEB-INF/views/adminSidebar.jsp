@@ -96,13 +96,13 @@
 						<div class="collapse in" id="dashboardOverview">
 							<ul class="nav">
 								<li class="">
-									<a href="adminAddClients">
+									<a href="<c:url value="/adminAddClients" />">
 										<span class="sidebar-mini">AC</span>
 										<span class="sidebar-normal">Add Clients</span>
 									</a>
 								</li>
 								<li class="">
-									<a href="adminManageClients">
+									<a href="<c:url value="/adminManageClients" />">
 										<span class="sidebar-mini">MC</span>
 										<span class="sidebar-normal">Manage Clients</span>
 									</a>

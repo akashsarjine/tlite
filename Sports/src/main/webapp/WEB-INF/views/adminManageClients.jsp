@@ -94,8 +94,8 @@
 												<td>${client.client_office_number}</td>
 												<td>${client.client_address}</td>
 												<td>
-													<a href="#" class="btn btn-simple btn-warning btn-icon edit" ><i class="ti-pencil-alt"></i></a>
-													<a href="#" class="btn btn-simple btn-danger btn-icon remove" onclick="confirm('Are you sure you want to delete this client?')"><i class="ti-close"></i></a>
+													<a href="<c:url value='/editClient/${client.client_id}' />" class="btn btn-simple btn-warning btn-icon edit" ><i class="ti-pencil-alt"></i></a>
+													<a href="<c:url value='/deleteClient/${client.client_id}' />" class="btn btn-simple btn-danger btn-icon remove" onclick="confirm('Are you sure you want to delete this client?')"><i class="ti-close"></i></a>
 												</td>
 											</tr>
 											</c:forEach>

@@ -2,9 +2,9 @@
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
  <jsp:include page="/WEB-INF/views/adminSidebar.jsp" />   
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
- <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%--  <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> --%>
+ <%-- <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
@@ -74,6 +74,12 @@
 		                            <div class="card-content">
 		                                <h4 class="card-title"></h4>
 		                                
+		                               <%--  <input 
+		                                type="text"
+		                                name="client_id"
+		                                value="${client.client_id}"
+		                                /> --%>
+		                                
 		                                  <fieldset>
 		                                    <div class="form-group">
 		                                        <label class="col-sm-3 control-label">
@@ -84,6 +90,7 @@
 		                                                   type="text"
 		                                                   name="client_email"
 		                                                   email="true"
+		                                                   value="${client.client_email}"
 													/>
 		                                        </div>
 		                                        
@@ -100,6 +107,7 @@
 		                                                   type="password"
 		                                                   name="client_password"
 		                                                   required="required"
+		                                                   value="${client.client_password}"
 													/>
 		                                        </div>
 		                                        
@@ -116,6 +124,7 @@
 		                                                   type="text"
 		                                                   name="client_name"
 		                                                   required="required"
+		                                                   value="${client.client_name}"
 													/>
 		                                        </div>
 		                                        
@@ -135,6 +144,7 @@
 		                                                   name="client_mobile"
 		                                                   number="true"
 		                                                   maxlength="10"
+		                                                   value="${client.client_mobile}"
 													/>
 		                                        </div>
 		                                        
@@ -152,6 +162,7 @@
 		                                                   name="client_office_number"
 		                                                   number="true"
 		                                                   maxlength="14"
+		                                                   value="${client.client_office_number}"
 													/>
 		                                        </div>
 		                                        
@@ -168,6 +179,7 @@
 		                                                   type="text"
 		                                                   name="client_address"
 		                                                   required="required"
+		                                                   value="${client.client_address}"
 													/>
 		                                        </div>
 		                                        
@@ -178,8 +190,20 @@
 		                               
 		                            </div>
 									<div class="card-footer text-center">
-										<button type="submit" class="btn btn-info btn-fill">Submit</button>
+									<c:choose>
+         
+							         <c:when test = "${empty client.client_id}">
+							            <button type="submit" class="btn btn-info btn-fill">Submit</button>
+							         </c:when>
+							         
+							        <c:otherwise>
+							             <button type="submit" class="btn btn-info btn-fill">Update</button>
+							         </c:otherwise>
+							      </c:choose>
+										
+									
 									</div>
+									
 		  						</form>    
 	                    
 	                    

@@ -12,9 +12,9 @@ public class AdminDaoImpl implements AdminDao {
 
       private SessionFactory sessionFactory;
 	
-	public void setSessionFactory(SessionFactory sf){
-		this.sessionFactory = sf;
-	}
+			public void setSessionFactory(SessionFactory sf){
+				this.sessionFactory = sf;
+			}
 	
 	@Override
 	public void addClient(Client client) {
@@ -44,8 +44,12 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public Client getClientById(int client_id) {
 		
-		Session session = this.sessionFactory.getCurrentSession();		
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		
 		Client client = (Client) session.load(Client.class, new Integer(client_id));
+		
+		 
 		return client;
 	}
 

@@ -7,8 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.transaction.annotation.Transactional;
+
 @Entity
 @Table(name="client")
+@Transactional
 public class Client {
 
 	@Id
@@ -20,7 +23,7 @@ public class Client {
 	private String client_password;
 	private String client_name;
 	private long client_mobile;
-	private String client_office_number;
+	private long client_office_number;
 	private String client_address;
 	private String client_logo;
 	
@@ -56,12 +59,7 @@ public class Client {
 	public void setClient_mobile(long client_mobile) {
 		this.client_mobile = client_mobile;
 	}
-	public String getClient_office_number() {
-		return client_office_number;
-	}
-	public void setClient_office_number(String client_office_number) {
-		this.client_office_number = client_office_number;
-	}
+	
 	public String getClient_address() {
 		return client_address;
 	}
@@ -73,6 +71,12 @@ public class Client {
 	}
 	public void setClient_logo(String client_logo) {
 		this.client_logo = client_logo;
+	}
+	public long getClient_office_number() {
+		return client_office_number;
+	}
+	public void setClient_office_number(long client_office_number) {
+		this.client_office_number = client_office_number;
 	}
 	
 	
