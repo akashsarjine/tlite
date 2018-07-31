@@ -9,7 +9,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/img/favicon.png"/>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Tlite Sport:Login</title>
+	<title>Tlite Sport:Homepage</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -42,20 +42,22 @@
                 </button>
                 <a class="navbar-brand" href="#">Technolite Sports</a>
             </div>
-          <!--   <div class="collapse navbar-collapse">
+          <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                       <a href="register.html">
-                            Register
+                       <a href="<c:url value="/adminLoginPage"/>">
+                          Admin Login
                         </a>
                     </li>
-					<li>
-                       <a href="../dashboard/overview.html">
-                            Dashboard
+                    
+                     <li>
+                       <a href="<c:url value="/clientLoginPage"/>">
+                          Client Login
                         </a>
                     </li>
+                   	
                 </ul>
-            </div> -->
+            </div> 
         </div>
     </nav>
 
@@ -65,38 +67,7 @@
             <div class="content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                            <form method="post" action="<c:url value="/adminLogin"/>">
-                                <div class="card" data-background="color" data-color="blue">
-                                   
-                                    <div class="card-header">
-                                        <h3 class="card-title">Admin Login</h3>
-                                    </div>
-                                    
-                                    
-                                    <div class="card-content">
-                                   
-                                        <h5 style="color:red" class="text-center">${error}</h5>
-                                    
-                                        <div class="form-group">
-                                            <label>Email address</label>
-                                            <input name="email" type="email" placeholder="Enter email" class="form-control input-no-border">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Password</label>
-                                            <input name="password" type="password" placeholder="Password" class="form-control input-no-border">
-                                        </div>
-                                    </div>
-                                    <div class="card-footer text-center">
-                                        <button type="submit" class="btn btn-fill btn-wd ">Let's go</button>
-                                       <!--  <div class="forgot">
-                                            <a href="#pablo">Forgot your password?</a>
-                                        </div> -->
-                                        
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                      
                     </div>
                 </div>
             </div>

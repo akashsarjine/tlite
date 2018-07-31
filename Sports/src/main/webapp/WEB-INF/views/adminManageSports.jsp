@@ -49,8 +49,8 @@
 	                        <span class="icon-bar bar2"></span>
 	                        <span class="icon-bar bar3"></span>
 	                    </button>
-	                    <a class="navbar-brand" href="#Dashboard">
-							Manage Clients
+	                    <a class="navbar-brand" href="#">
+							Manage Sports
 						</a>
 	                </div>
 	                <div class="collapse navbar-collapse">
@@ -67,7 +67,11 @@
 	                            <div class="row">
 	                            <div class="col-md-12">
 	                              <div class="toolbar">
-	                                    <!--Here you can write extra buttons/actions for the toolbar-->
+	                                  <div class="text-right">
+	                                   <button class="btn btn-success" data-toggle="modal" data-target="#addSportModal">Add Sport</button>
+	                                </div> 
+	                                <br>
+	                                <br>
 	                                </div>
                                     <div class="fresh-datatables">
 										<table id="clientTable" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
@@ -75,27 +79,19 @@
 											<tr>
 											    <!-- <th>Id</th> -->
 												<th>Name</th>
-												<th>Email</th>
-												<th>Mobile</th>
-												<th>Office No.</th>
-												<th>Address</th>
 												<th class="disabled-sorting">Actions</th>
 											</tr>
 										</thead>
 										
 										<tbody>
 										
-										  <c:forEach items="${clientList}" var="client">
+										  <c:forEach items="${sportList}" var="sport">
 											<tr>
-											    <%-- <td>${client.client_id}</td> --%>
-											    <td>${client.client_name}</td>
-												<td>${client.client_email}</td>
-												<td>${client.client_mobile}</td>
-												<td>${client.client_office_number}</td>
-												<td>${client.client_address}</td>
+											    <%-- <td>${sport.sport_id}</td> --%>
+											    <td>${sport.sport_name}</td>
+												
 												<td>
-													<a href="<c:url value='/editClient/${client.client_id}' />" class="btn btn-simple btn-warning btn-icon edit" ><i class="ti-pencil-alt"></i></a>
-													<a href="<c:url value='/deleteClient/${client.client_id}' />" class="btn btn-simple btn-danger btn-icon remove" onclick="return confirm('Are you sure you want to delete this client?')"><i class="ti-close"></i></a>
+												<a href="<c:url value='/deleteSport/${sport.sport_id}' />" class="btn btn-simple btn-danger btn-icon remove" onclick="return confirm('Are you sure you want to delete this sport?')"><i class="ti-close"></i></a>
 												</td>
 											</tr>
 											</c:forEach>
@@ -116,6 +112,66 @@
           
 	    </div>
 </body>
+
+ <!-- Modals -->
+
+
+<div id="addSportModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Add Sport</h4>
+				</div>
+				<div class="modal-body">
+					
+					 <c:url var="addAction" value="/addSport" ></c:url>
+		                        <form id="addClientForm" class="form-horizontal" action="${addAction}" method="post" novalidate="">
+		                            <div class="card-content">
+		                                <h4 class="card-title"></h4>
+		                                
+		                              <%--   <input 
+		                                type="hidden"
+		                                name="client_id"
+		                                value="${client.client_id}"
+		                                />  --%>
+		                                
+		                                 <fieldset>
+		                                    <div class="form-group">
+		                                        <label class="col-sm-3 control-label">
+													Sport Name
+												</label>
+		                                        <div class="col-sm-6">
+		                                            <input class="form-control"
+		                                                   type="text"
+		                                                   name="sport_name"
+		                                                   required="required"
+		                                                   value="${client.client_name}"
+													/>
+		                                        </div>
+		                                        
+		                                    </div>
+		                                </fieldset>
+
+		                                   </div>
+									<div class="card-footer text-center">
+									 <button type="submit" class="btn btn-info btn-fill">Submit</button>
+							     </div>
+									
+		  						</form>    
+	                    
+					
+					
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
 	<!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
 	<%-- <script src="<c:url value="/resources/js/jquery-3.1.1.min.js" />" type="text/javascript"></script>
 	<script src="<c:url value="/resources/js/jquery-ui.min.js" />" type="text/javascript"></script>

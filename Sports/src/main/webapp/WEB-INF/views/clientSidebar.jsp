@@ -55,7 +55,7 @@
 
 	                    <a data-toggle="collapse" href="#collapseExample" class="collapsed">
 	                        <span>
-								Admin
+								Client
 		                        <b class="caret"></b>
 							</span>
 	                    </a>
@@ -63,13 +63,13 @@
 
 	                    <div class="collapse" id="collapseExample">
 	                        <ul class="nav">
-	                           <li>
+	                        
+	                            <li>
 									<a href="<c:url value="/logout"/>">
 										<span class="sidebar-mini">LO</span>
 										<span class="sidebar-normal">Log Out</span>
 									</a>
 								</li>
-	                        
 	                           <!--  <li>
 									<a href="#profile">
 										<span class="sidebar-mini">Mp</span>
@@ -86,58 +86,131 @@
 									<a href="#settings">
 										<span class="sidebar-mini">S</span>
 										<span class="sidebar-normal">Settings</span>
-									</a> -->
-								</li>
+									</a>
+								</li> -->
 	                        </ul>
 	                    </div>
 	                </div>
 	            </div>
-	            <ul class="nav">
-	                <li class="active">
-	                    <a data-toggle="collapse" href="#dashboardOverview" aria-expanded="true">
-	                        <i class="ti-panel"></i>
-	                        <p>Client Management
+	            <ul class="nav sidebarClass">
+	                <li class="">
+	                    <a data-toggle="collapse" href="#dashboard" aria-expanded="true">
+	                        <i class="ti-dashboard"></i>
+	                        <p>Dashboard
                                 <b class="caret"></b>
                             </p>
 	                    </a>
-						<div class="collapse in" id="dashboardOverview">
+						<div class="collapse" id="dashboard">
 							<ul class="nav">
 								<li class="">
-									<a href="<c:url value="/adminAddClients" />">
-										<span class="sidebar-mini">AC</span>
-										<span class="sidebar-normal">Add Clients</span>
+									<a href="<c:url value="/clientDashboard" />">
+										<span class="sidebar-mini">DB</span>
+										<span class="sidebar-normal">Dashboard</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+	                </li>
+	            
+	                <li >
+	                    <a data-toggle="collapse" href="#groundManagement" aria-expanded="true">
+	                        <i class="ti-basketball"></i>
+	                        <p>Ground Management
+                                <b class="caret"></b>
+                            </p>
+	                    </a>
+						<div class="collapse" id="groundManagement">
+							<ul class="nav">
+								<li class="">
+									<a href="<c:url value="/addGroundPage" />">
+										<span class="sidebar-mini">AG</span>
+										<span class="sidebar-normal">Add Ground</span>
 									</a>
 								</li>
 								<li class="">
-									<a href="<c:url value="/adminManageClients" />">
-										<span class="sidebar-mini">MC</span>
-										<span class="sidebar-normal">Manage Clients</span>
+									<a href="<c:url value="/manageGrounds" />">
+										<span class="sidebar-mini">MG</span>
+										<span class="sidebar-normal">Manage Grounds</span>
 									</a>
 								</li>
 								
 							</ul>
 						</div>
 	                </li>
-					 <li>
+	                 <li >
+	                    <a data-toggle="collapse" href="#slotManagement" aria-expanded="true">
+	                        <i class="ti-time"></i>
+	                        <p>Time Slot Management
+                                <b class="caret"></b>
+                            </p>
+	                    </a>
+						<div class="collapse" id="slotManagement">
+							<ul class="nav">
+								<li class="">
+									<a href="<c:url value="/selectGround" />">
+										<span class="sidebar-mini">Ms</span>
+										<span class="sidebar-normal">Manage Slots</span>
+									</a>
+								</li>
+								
+							</ul>
+						</div>
+	                </li>
+					<!-- <li>
 						<a data-toggle="collapse" href="#componentsExamples">
 							<i class="ti-package"></i>
-							<p>Sports
+							<p>Components
 							   <b class="caret"></b>
 							</p>
 						</a>
 						<div class="collapse" id="componentsExamples">
 							<ul class="nav">
 	                            <li>
-									<a href="<c:url value="/manageSports" />">
-										<span class="sidebar-mini">MS</span>
-										<span class="sidebar-normal">Manage Sports</span>
+									<a href="../components/buttons.html">
+										<span class="sidebar-mini">B</span>
+										<span class="sidebar-normal">Buttons</span>
 									</a>
 								</li>
-	                            
+	                            <li>
+									<a href="../components/grid.html">
+										<span class="sidebar-mini">GS</span>
+										<span class="sidebar-normal">Grid System</span>
+									</a>
+								</li>
+	                            <li>
+									<a href="../components/panels.html">
+										<span class="sidebar-mini">P</span>
+										<span class="sidebar-normal">Panels</span>
+									</a>
+								</li>
+	                            <li>
+									<a href="../components/sweet-alert.html">
+										<span class="sidebar-mini">SA</span>
+										<span class="sidebar-normal">Sweet Alert</span>
+									</a>
+								</li>
+	                            <li>
+									<a href="../components/notifications.html">
+										<span class="sidebar-mini">N</span>
+										<span class="sidebar-normal">Notifications</span>
+									</a>
+								</li>
+	                            <li>
+									<a href="../components/icons.html">
+										<span class="sidebar-mini">I</span>
+										<span class="sidebar-normal">Icons</span>
+									</a>
+								</li>
+	                            <li>
+									<a href="../components/typography.html">
+										<span class="sidebar-mini"><i class="ti-panel"></i></span>
+										<span class="sidebar-normal">Typography</span>
+									</a>
+								</li>
 	                        </ul>
 						</div>
 					</li>
-					<!--<li>
+					<li>
 						<a data-toggle="collapse" href="#formsExamples">
 	                        <i class="ti-clipboard"></i>
 	                        <p>
@@ -374,13 +447,39 @@
 	</script> --> 
 		<script>
 		$(document).ready(function () {
+			
 		    var activeli;
-		    $('.nav li').each(function () {
-		        url = $(this).find("a").attr("href");
-		        if (url != "/" && location.href.indexOf(url) > 0) activeli = $(this);
+		    
+		    /* $(".nav").find(".active").removeClass("active");
+		       
+			 $(".collapse,.in").removeClass("in");  */
+		    
+		     $('.sidebarClass li').each(function () {
+		    	
+		    	  
+		    	url = $(this).find("a").attr("href");
+		        if (url != "/" && location.href.indexOf(url) > 0){
+		        	activeli = $(this);
+		        	 $(this).parent().closest("li").addClass("active"); 
+		            $(this).closest("div").addClass("in"); 
+		            activeli.addClass("active");
+		        }
 		    });
-		    if (!activeli) activeli = $("#navbar li:first-child");
-		    activeli.addClass("active");
+		    
+		    
+		       if (!activeli){ 
+		    	   
+		    	activeli = $("#navbar li:first-child");
+		    	
+		    	activeli.parent().closest("li").addClass("active"); 
+		    	activeli.closest("div").addClass("in"); 
+		        activeli.addClass("active"); 
+		        
+		        
+		       }
+		       
+		        
+		        
 		});
 		    </script>
 </html>

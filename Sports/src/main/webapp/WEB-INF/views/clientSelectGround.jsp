@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
- <jsp:include page="/WEB-INF/views/adminSidebar.jsp" />   
+ <jsp:include page="/WEB-INF/views/clientSidebar.jsp" />   
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,7 +28,7 @@
 
 
     <!--  Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"  rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet"  type='text/css'>
     <link href="<c:url value="resources/css/themify-icons.css" />"rel="stylesheet">
     
@@ -49,8 +49,8 @@
 	                        <span class="icon-bar bar2"></span>
 	                        <span class="icon-bar bar3"></span>
 	                    </button>
-	                    <a class="navbar-brand" href="#Dashboard">
-							Manage Clients
+	                    <a class="navbar-brand" href="#">
+							Manage Slots
 						</a>
 	                </div>
 	                <div class="collapse navbar-collapse">
@@ -66,46 +66,42 @@
 	                            <div class="card-content">
 	                            <div class="row">
 	                            <div class="col-md-12">
-	                              <div class="toolbar">
-	                                    <!--Here you can write extra buttons/actions for the toolbar-->
-	                                </div>
-                                    <div class="fresh-datatables">
-										<table id="clientTable" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-										<thead>
-											<tr>
-											    <!-- <th>Id</th> -->
-												<th>Name</th>
-												<th>Email</th>
-												<th>Mobile</th>
-												<th>Office No.</th>
-												<th>Address</th>
-												<th class="disabled-sorting">Actions</th>
-											</tr>
-										</thead>
-										
-										<tbody>
-										
-										  <c:forEach items="${clientList}" var="client">
-											<tr>
-											    <%-- <td>${client.client_id}</td> --%>
-											    <td>${client.client_name}</td>
-												<td>${client.client_email}</td>
-												<td>${client.client_mobile}</td>
-												<td>${client.client_office_number}</td>
-												<td>${client.client_address}</td>
-												<td>
-													<a href="<c:url value='/editClient/${client.client_id}' />" class="btn btn-simple btn-warning btn-icon edit" ><i class="ti-pencil-alt"></i></a>
-													<a href="<c:url value='/deleteClient/${client.client_id}' />" class="btn btn-simple btn-danger btn-icon remove" onclick="return confirm('Are you sure you want to delete this client?')"><i class="ti-close"></i></a>
-												</td>
-											</tr>
-											</c:forEach>
-											
-										   </tbody>
-									    </table>
-									</div>
-
-
-	                            </div>
+	                             
+					 <c:url var="addAction" value="/manageSlots" ></c:url>
+		                        <form id="addSlotForm" class="form-horizontal" action="${addAction}" method="get" novalidate="">
+		                            <div class="card-content">
+		                                <h4 class="card-title"></h4>
+		                                
+		                              
+		                                
+		                                 <fieldset>
+		                                    <div class="form-group">
+		                                        <label class="col-sm-3 control-label">
+													Select  Ground
+												</label>
+		                                        <div class="col-sm-4">
+		                                           <select name="ground_id" required="required" class="selectpicker" data-style="btn  btn-block" title="Select Ground" data-size="5">
+                                                
+                                                <c:forEach items="${grounds}" var="ground">
+                                                
+                                                
+												 <option value="${ground.ground_id}">${ground.ground_name}</option>
+												 
+						                           
+                                                </c:forEach>
+                                               </select>
+		                                        </div>
+		                                        
+		                                    </div>
+		                                </fieldset>
+		                                
+		                                <div class="card-footer text-center">
+									  <button type="submit" class="btn btn-info btn-fill">Submit</button>
+							           </div>
+		                                
+		                                </div>
+		                                </form>
+		                                
 	                             </div>
 	                            </div>
 	                        </div><!--  end card  -->
@@ -113,9 +109,15 @@
 					</div>
                 </div>
 	        </div>
+	        </div>
+	        
           
 	    </div>
 </body>
+
+ 
+
+
 	<!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
 	<%-- <script src="<c:url value="/resources/js/jquery-3.1.1.min.js" />" type="text/javascript"></script>
 	<script src="<c:url value="/resources/js/jquery-ui.min.js" />" type="text/javascript"></script>
@@ -163,9 +165,10 @@
 	<script src="<c:url value="/resources/js/paper-dashboard.js"/>"></script>
 
 	
-
+<!-- 
 	<script type="text/javascript">
 	  
+	
 	 $('#clientTable').DataTable({
          "pagingType": "full_numbers",
          "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -177,9 +180,30 @@
      });
 	
     	$(document).ready(function(){
+    		
+    		
+    		 $('#addSlotForm').validate();
+    		 
+    		 
+    		 $('.timepicker').datetimepicker({
+     	          format: 'H:mm',    // use this format if you want the 24hours timepicker
+    	          /*   format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle */
+    	            icons: {
+    	                time: "fa fa-clock-o",
+    	                date: "fa fa-calendar",
+    	                up: "fa fa-chevron-up",
+    	                down: "fa fa-chevron-down",
+    	                previous: 'fa fa-chevron-left',
+    	                next: 'fa fa-chevron-right',
+    	                today: 'fa fa-screenshot',
+    	                clear: 'fa fa-trash',
+    	                close: 'fa fa-remove'
+    	            }
+
 			
 
     	});
-	</script>
+    	});
+	</script> -->
 
 </html>

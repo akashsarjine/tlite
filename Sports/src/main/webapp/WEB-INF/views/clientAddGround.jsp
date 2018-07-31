@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
- <jsp:include page="/WEB-INF/views/adminSidebar.jsp" />   
+ <jsp:include page="/WEB-INF/views/clientSidebar.jsp" />   
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--  <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> --%>
  <%-- <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -55,17 +55,17 @@
 	                   
 						             <c:choose>
          
-							         <c:when test = "${client.client_id==0}">
+							         <c:when test = "${ground.ground_id==0}">
 							         
-							            <a class="navbar-brand" href="#Dashboard">
-											Add Client
+							            <a class="navbar-brand" href="#">
+											Add Ground
 										</a>
 										
 							         </c:when>
 							         
 							        <c:otherwise>
-							            <a class="navbar-brand" href="#Dashboard">
-										Update Client
+							            <a class="navbar-brand" href="#">
+										Update Ground
 						       			</a>
 							         </c:otherwise>
 							      </c:choose>
@@ -86,28 +86,29 @@
 		                    
 		                    <h3 class="text-center">${message}</h3>
 		                    
-		                    <c:url var="addAction" value="/addClient" ></c:url>
-		                        <form id="addClientForm" class="form-horizontal" action="${addAction}" method="post" novalidate="">
+		                    <c:url var="addAction" value="/addGround" ></c:url>
+		                        <form id="addGroundForm" class="form-horizontal" action="${addAction}" method="post" novalidate="">
 		                            <div class="card-content">
 		                                <h4 class="card-title"></h4>
 		                                
 		                                <input 
 		                                type="hidden"
-		                                name="client_id"
-		                                value="${client.client_id}"
+		                                name="ground_id"
+		                                value="${ground.ground_id}"
 		                                /> 
-		                                
-		                                  <fieldset>
+		                                    
+		                                               
+		                                     <fieldset>
 		                                    <div class="form-group">
 		                                        <label class="col-sm-3 control-label">
-													Email
+													Ground Name
 												</label>
 		                                        <div class="col-sm-6">
 		                                            <input class="form-control"
 		                                                   type="text"
-		                                                   name="client_email"
-		                                                   email="true"
-		                                                   value="${client.client_email}"
+		                                                   name="ground_name"
+		                                                   required="required"
+		                                                   value="${ground.ground_name}"
 													/>
 		                                        </div>
 		                                        
@@ -117,15 +118,28 @@
 		                                <fieldset>
 		                                    <div class="form-group">
 		                                        <label class="col-sm-3 control-label">
-													Password
+													Select Sport
 												</label>
 		                                        <div class="col-sm-6">
-		                                            <input class="form-control"
-		                                                   type="password"
-		                                                   name="client_password"
-		                                                   required="required"
-		                                                   value="${client.client_password}"
-													/>
+		                                             <select name="sport_id" required="required" class="selectpicker" data-style="btn  btn-block" title="Select Sport" data-size="5">
+                                                
+                                                <c:forEach items="${sports}" var="sport">
+                                                
+                                                 <c:choose>
+												 <c:when test="${ground.sport.sport_id==sport.sport_id}">
+												 
+												 <option value="${sport.sport_id}" selected>${sport.sport_name}</option>
+												 
+												  </c:when>
+													<c:otherwise>
+													
+													<option value="${sport.sport_id}">${sport.sport_name}</option>
+													
+													</c:otherwise>
+													</c:choose>
+						                           
+                                                </c:forEach>
+                                               </select>
 		                                        </div>
 		                                        
 		                                    </div>
@@ -134,15 +148,15 @@
 		                                <fieldset>
 		                                    <div class="form-group">
 		                                        <label class="col-sm-3 control-label">
-													Name
+													Ground Dimentions
 												</label>
 		                                        <div class="col-sm-6">
-		                                            <input class="form-control"
+		                                            <textarea class="form-control"
 		                                                   type="text"
-		                                                   name="client_name"
+		                                                   name="ground_dimentions"
 		                                                   required="required"
-		                                                   value="${client.client_name}"
-													/>
+		                                                   rows="4"
+													>${ground.ground_dimentions}</textarea>
 		                                        </div>
 		                                        
 		                                    </div>
@@ -153,63 +167,25 @@
 		                                <fieldset>
 		                                    <div class="form-group">
 		                                        <label class="col-sm-3 control-label">
-													Mobile
-												</label>
-		                                        <div class="col-sm-6">
-		                                            <input class="form-control"
-		                                                   type="text"
-		                                                   name="client_mobile"
-		                                                   number="true"
-		                                                   maxlength="10"
-		                                                   value="${client.client_mobile}"
-													/>
-		                                        </div>
-		                                        
-		                                    </div>
-		                                </fieldset>
-		                                
-		                                <fieldset>
-		                                    <div class="form-group">
-		                                        <label class="col-sm-3 control-label">
-													Office Number
-												</label>
-		                                        <div class="col-sm-6">
-		                                            <input class="form-control"
-		                                                   type="text"
-		                                                   name="client_office_number"
-		                                                   number="true"
-		                                                   maxlength="14"
-		                                                   value="${client.client_office_number}"
-													/>
-		                                        </div>
-		                                        
-		                                    </div>
-		                                </fieldset>
-		                                
-		                                <fieldset>
-		                                    <div class="form-group">
-		                                        <label class="col-sm-3 control-label">
-													Address
+													Ground Description
 												</label>
 		                                        <div class="col-sm-6">
 		                                            <textarea class="form-control"
 		                                                   type="text"
-		                                                   name="client_address"
-		                                                   required="required"
+		                                                   name="ground_description"
 		                                                   rows="4"
-		                                               >${client.client_address}</textarea>
+		                                              >${ground.ground_description}</textarea>
 		                                        </div>
 		                                        
 		                                    </div>
 		                                </fieldset>
 		                                
-
-		                               
+		                              
 		                            </div>
 									<div class="card-footer text-center">
 									<c:choose>
          
-							         <c:when test = "${client.client_id==0}">
+							         <c:when test = "${ground.ground_id==0}">
 							            <button type="submit" class="btn btn-info btn-fill">Submit</button>
 							         </c:when>
 							         
@@ -285,7 +261,7 @@
 	<script type="text/javascript">
     	$(document).ready(function(){
     		
-    		$("#addClientForm").validate();
+    		$("#addGroundForm").validate();
     	});
 	</script>
 

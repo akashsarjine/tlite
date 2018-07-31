@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tlite.dao.AdminDao;
 import com.tlite.model.Client;
+import com.tlite.model.Sport;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -42,7 +43,7 @@ public class AdminServiceImpl implements AdminService {
 	public Client getClientById(int client_id) {
 		
 		Client client=this.adminDao.getClientById(client_id);
-		
+		System.out.println(client.getClient_id());
 		return client;
 	}
 
@@ -53,6 +54,42 @@ public class AdminServiceImpl implements AdminService {
 		this.adminDao.removeClient(client_id);
 		
 	}
+
+	@Override
+	public boolean validateLogin(String email, String password) {
+		
+		boolean result=false;
+		
+		
+		if(email.equals("admin@gmail.com") && password.equals("123") ){
+			
+		    result=true;
+		    
+		}
+		
+		
+		return result;
+	}
+
+	@Override
+	@Transactional
+	public List<Sport> listSports() {
+		return this.adminDao.listSport();
+	}
+
+	@Override
+	@Transactional
+	public boolean addSport(Sport sport) {
+		return this.adminDao.addSport(sport);
+	}
+
+	@Override
+	@Transactional
+	public void removeSport(int sport_id) {
+		 this.adminDao.deleteSport(sport_id);
+	}
+
+	
 
 	
 	

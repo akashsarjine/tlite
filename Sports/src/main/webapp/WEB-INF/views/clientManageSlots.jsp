@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
- <jsp:include page="/WEB-INF/views/adminSidebar.jsp" />   
+ <jsp:include page="/WEB-INF/views/clientSidebar.jsp" />   
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,7 +28,7 @@
 
 
     <!--  Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"  rel="stylesheet">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet"  type='text/css'>
     <link href="<c:url value="resources/css/themify-icons.css" />"rel="stylesheet">
     
@@ -49,8 +49,8 @@
 	                        <span class="icon-bar bar2"></span>
 	                        <span class="icon-bar bar3"></span>
 	                    </button>
-	                    <a class="navbar-brand" href="#Dashboard">
-							Manage Clients
+	                    <a class="navbar-brand" href="#">
+							Manage Slots
 						</a>
 	                </div>
 	                <div class="collapse navbar-collapse">
@@ -63,39 +63,52 @@
 	            <div class="container-fluid">
 	                          <div class="row">
 	                           <div class="card">
-	                            <div class="card-content">
+	                           <div class="card-content">
+	                            <div class="card-title">
+	                              <h4>${ground.ground_name} Slots</h4>
+	                              <hr> 
+	                             </div>
+	                            
 	                            <div class="row">
 	                            <div class="col-md-12">
 	                              <div class="toolbar">
-	                                    <!--Here you can write extra buttons/actions for the toolbar-->
+	                                <div class="text-right">
+	                                  <form action="<c:url value="/addSlotPage"/>" method="post">
+	                                  <input type="hidden" name="ground_id" value="${ground.ground_id}" >
+	                                  <button type="submit" class="btn btn-success" >Add Slot</button>
+	                                  </form>
+	                                  <!--  <button class="btn btn-success" data-toggle="modal" data-target="#addSlotModal">Add Slot</button> -->
+	                                </div>  
+	                                <br>
+	                                <br>
 	                                </div>
                                     <div class="fresh-datatables">
 										<table id="clientTable" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
 										<thead>
 											<tr>
 											    <!-- <th>Id</th> -->
-												<th>Name</th>
-												<th>Email</th>
-												<th>Mobile</th>
-												<th>Office No.</th>
-												<th>Address</th>
+												<th>Start Time</th>
+												<th>End Time</th>
+												<th>Weekends (price/hour)</th>
+												<th>Weekdays (price/hour)</th>
 												<th class="disabled-sorting">Actions</th>
 											</tr>
 										</thead>
 										
 										<tbody>
 										
-										  <c:forEach items="${clientList}" var="client">
+										  <c:forEach items="${slots}" var="slot">
 											<tr>
-											    <%-- <td>${client.client_id}</td> --%>
-											    <td>${client.client_name}</td>
-												<td>${client.client_email}</td>
-												<td>${client.client_mobile}</td>
-												<td>${client.client_office_number}</td>
-												<td>${client.client_address}</td>
+											    <%-- <td>${slot.slot_id}</td> --%>
+											    <td>${slot.start_time}</td>
+											    <td>${slot.end_time}</td>
+											    <td>${slot.weekend_charge}</td>
+											    <td>${slot.weekdays_charge}</td>
+											    
+			
 												<td>
-													<a href="<c:url value='/editClient/${client.client_id}' />" class="btn btn-simple btn-warning btn-icon edit" ><i class="ti-pencil-alt"></i></a>
-													<a href="<c:url value='/deleteClient/${client.client_id}' />" class="btn btn-simple btn-danger btn-icon remove" onclick="return confirm('Are you sure you want to delete this client?')"><i class="ti-close"></i></a>
+												<a href="<c:url value='/editSlot/${slot.slot_id}' />" class="btn btn-simple btn-warning btn-icon edit" ><i class="ti-pencil-alt"></i></a>
+												<a href="<c:url value='/deleteSlot/${slot.slot_id}/${slot.ground.ground_id}' />" class="btn btn-simple btn-danger btn-icon remove" onclick="return confirm('Are you sure you want to delete this slot?')"><i class="ti-close"></i></a>
 												</td>
 											</tr>
 											</c:forEach>
@@ -116,6 +129,31 @@
           
 	    </div>
 </body>
+
+ <!-- <!-- Modals -->
+
+
+<div id="addSlotModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Add Slot</h4>
+				</div>
+				<div class="modal-body">
+					
+					            
+	                    
+					
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+
+
 	<!--   Core JS Files. Extra: TouchPunch for touch library inside jquery-ui.min.js   -->
 	<%-- <script src="<c:url value="/resources/js/jquery-3.1.1.min.js" />" type="text/javascript"></script>
 	<script src="<c:url value="/resources/js/jquery-ui.min.js" />" type="text/javascript"></script>
@@ -166,6 +204,7 @@
 
 	<script type="text/javascript">
 	  
+	
 	 $('#clientTable').DataTable({
          "pagingType": "full_numbers",
          "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
@@ -176,10 +215,7 @@
 	        }
      });
 	
-    	$(document).ready(function(){
-			
-
-    	});
+    	
 	</script>
 
 </html>

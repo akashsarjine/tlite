@@ -9,7 +9,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="<c:url value="/resources/img/favicon.png"/>">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Tlite Sport:Login</title>
+	<title>Tlite Sport:Client Login</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -66,17 +66,14 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                            <form method="post" action="<c:url value="/adminLogin"/>">
+                            <form method="post" action="<c:url value="/clientlogin"/>">
                                 <div class="card" data-background="color" data-color="blue">
-                                   
                                     <div class="card-header">
-                                        <h3 class="card-title">Admin Login</h3>
+                                        <h3 class="card-title">Client Login</h3>
                                     </div>
-                                    
-                                    
                                     <div class="card-content">
-                                   
-                                        <h5 style="color:red" class="text-center">${error}</h5>
+                                    
+                                      <h5 style="color:red" class="text-center">${error}</h5>
                                     
                                         <div class="form-group">
                                             <label>Email address</label>
@@ -92,7 +89,6 @@
                                        <!--  <div class="forgot">
                                             <a href="#pablo">Forgot your password?</a>
                                         </div> -->
-                                        
                                     </div>
                                 </div>
                             </form>

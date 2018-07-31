@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
- <jsp:include page="/WEB-INF/views/adminSidebar.jsp" />   
+ <jsp:include page="/WEB-INF/views/clientSidebar.jsp" />   
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--  <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> --%>
  <%-- <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -52,8 +52,11 @@
 	                        <span class="icon-bar bar3"></span>
 	                    </button>
 	                    
-	                   
-						             <c:choose>
+	                            <a class="navbar-brand" href="#Dashboard">
+									    Dashboard
+										</a>
+	                    
+						            <%--  <c:choose>
          
 							         <c:when test = "${client.client_id==0}">
 							         
@@ -68,7 +71,7 @@
 										Update Client
 						       			</a>
 							         </c:otherwise>
-							      </c:choose>
+							      </c:choose> --%>
 						
 	                </div>
 	                <div class="collapse navbar-collapse">
@@ -84,7 +87,7 @@
 	                 <div class="col-md-12">
 		                    <div class="card">
 		                    
-		                    <h3 class="text-center">${message}</h3>
+		                   <%--  <h3 class="text-center">${message}</h3>
 		                    
 		                    <c:url var="addAction" value="/addClient" ></c:url>
 		                        <form id="addClientForm" class="form-horizontal" action="${addAction}" method="post" novalidate="">
@@ -221,7 +224,7 @@
 									
 									</div>
 									
-		  						</form>    
+		  						</form>     --%>
 	                    
 	                    
 						</div>

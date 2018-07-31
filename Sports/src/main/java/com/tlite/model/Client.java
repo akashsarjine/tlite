@@ -1,17 +1,17 @@
 package com.tlite.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.transaction.annotation.Transactional;
 
 @Entity
 @Table(name="client")
-@Transactional
 public class Client {
 
 	@Id
@@ -27,7 +27,12 @@ public class Client {
 	private String client_address;
 	private String client_logo;
 	
+	@OneToMany(mappedBy="client")
+	private Set<Ground> grounds;
 	
+	
+	
+	public Client() {}
 	
 	public int getClient_id() {
 		return client_id;
@@ -77,6 +82,14 @@ public class Client {
 	}
 	public void setClient_office_number(long client_office_number) {
 		this.client_office_number = client_office_number;
+	}
+	
+	
+	public Set<Ground> getGrounds() {
+		return grounds;
+	}
+	public void setGrounds(Set<Ground> grounds) {
+		this.grounds = grounds;
 	}
 	
 	

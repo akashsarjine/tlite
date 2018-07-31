@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
- <jsp:include page="/WEB-INF/views/adminSidebar.jsp" />   
+ <jsp:include page="/WEB-INF/views/clientSidebar.jsp" />   
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -50,7 +50,7 @@
 	                        <span class="icon-bar bar3"></span>
 	                    </button>
 	                    <a class="navbar-brand" href="#Dashboard">
-							Manage Clients
+							Manage Grounds
 						</a>
 	                </div>
 	                <div class="collapse navbar-collapse">
@@ -73,29 +73,28 @@
 										<table id="clientTable" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
 										<thead>
 											<tr>
-											    <!-- <th>Id</th> -->
-												<th>Name</th>
-												<th>Email</th>
-												<th>Mobile</th>
-												<th>Office No.</th>
-												<th>Address</th>
+											   <!--  <th>Id</th> -->
+												<th>Ground Name</th>
+												<th>Sport Name</th>
+												<th>Ground Dimensions</th>
+												<th>Ground Descriptions</th>
 												<th class="disabled-sorting">Actions</th>
 											</tr>
 										</thead>
 										
 										<tbody>
 										
-										  <c:forEach items="${clientList}" var="client">
+										  <c:forEach items="${grounds}" var="ground">
 											<tr>
-											    <%-- <td>${client.client_id}</td> --%>
-											    <td>${client.client_name}</td>
-												<td>${client.client_email}</td>
-												<td>${client.client_mobile}</td>
-												<td>${client.client_office_number}</td>
-												<td>${client.client_address}</td>
+											    <%-- <td>${ground.ground_id}</td> --%>
+											    <td>${ground.ground_name}</td>
+											    <td>${ground.sport.sport_name}</td>
+												<td>${ground.ground_dimentions}</td>
+												<td>${ground.ground_description}</td>
+												
 												<td>
-													<a href="<c:url value='/editClient/${client.client_id}' />" class="btn btn-simple btn-warning btn-icon edit" ><i class="ti-pencil-alt"></i></a>
-													<a href="<c:url value='/deleteClient/${client.client_id}' />" class="btn btn-simple btn-danger btn-icon remove" onclick="return confirm('Are you sure you want to delete this client?')"><i class="ti-close"></i></a>
+													<a href="<c:url value='/editGround/${ground.ground_id}' />" class="btn btn-simple btn-warning btn-icon edit" ><i class="ti-pencil-alt"></i></a>
+													<a href="<c:url value='/deleteGround/${ground.ground_id}' />" class="btn btn-simple btn-danger btn-icon remove" onclick="return confirm('Are you sure you want to delete this ground?')"><i class="ti-close"></i></a>
 												</td>
 											</tr>
 											</c:forEach>

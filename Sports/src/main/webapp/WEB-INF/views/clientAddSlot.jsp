@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
- <jsp:include page="/WEB-INF/views/adminSidebar.jsp" />   
+ <jsp:include page="/WEB-INF/views/clientSidebar.jsp" />   
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--  <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%> --%>
  <%-- <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -55,17 +55,17 @@
 	                   
 						             <c:choose>
          
-							         <c:when test = "${client.client_id==0}">
+							         <c:when test = "${slot.slot_id==0}">
 							         
-							            <a class="navbar-brand" href="#Dashboard">
-											Add Client
+							            <a class="navbar-brand" href="#">
+											Add Slot
 										</a>
 										
 							         </c:when>
 							         
 							        <c:otherwise>
-							            <a class="navbar-brand" href="#Dashboard">
-										Update Client
+							            <a class="navbar-brand" href="#">
+										Update Slot
 						       			</a>
 							         </c:otherwise>
 							      </c:choose>
@@ -86,141 +86,136 @@
 		                    
 		                    <h3 class="text-center">${message}</h3>
 		                    
-		                    <c:url var="addAction" value="/addClient" ></c:url>
-		                        <form id="addClientForm" class="form-horizontal" action="${addAction}" method="post" novalidate="">
+		                    <c:url var="addAction" value="/addSlot" ></c:url>
+		                        <form id="addSlotForm" class="form-horizontal" action="${addAction}" method="post" novalidate="">
 		                            <div class="card-content">
 		                                <h4 class="card-title"></h4>
 		                                
-		                                <input 
-		                                type="hidden"
-		                                name="client_id"
-		                                value="${client.client_id}"
-		                                /> 
-		                                
-		                                  <fieldset>
-		                                    <div class="form-group">
-		                                        <label class="col-sm-3 control-label">
-													Email
-												</label>
-		                                        <div class="col-sm-6">
-		                                            <input class="form-control"
-		                                                   type="text"
-		                                                   name="client_email"
-		                                                   email="true"
-		                                                   value="${client.client_email}"
-													/>
-		                                        </div>
-		                                        
-		                                    </div>
-		                                </fieldset>
-		                                
-		                                <fieldset>
-		                                    <div class="form-group">
-		                                        <label class="col-sm-3 control-label">
-													Password
-												</label>
-		                                        <div class="col-sm-6">
-		                                            <input class="form-control"
-		                                                   type="password"
-		                                                   name="client_password"
-		                                                   required="required"
-		                                                   value="${client.client_password}"
-													/>
-		                                        </div>
-		                                        
-		                                    </div>
-		                                </fieldset>
-		                                
-		                                <fieldset>
-		                                    <div class="form-group">
-		                                        <label class="col-sm-3 control-label">
-													Name
-												</label>
-		                                        <div class="col-sm-6">
-		                                            <input class="form-control"
-		                                                   type="text"
-		                                                   name="client_name"
-		                                                   required="required"
-		                                                   value="${client.client_name}"
-													/>
-		                                        </div>
-		                                        
-		                                    </div>
-		                                </fieldset>
-
-		                              
-
-		                                <fieldset>
-		                                    <div class="form-group">
-		                                        <label class="col-sm-3 control-label">
-													Mobile
-												</label>
-		                                        <div class="col-sm-6">
-		                                            <input class="form-control"
-		                                                   type="text"
-		                                                   name="client_mobile"
-		                                                   number="true"
-		                                                   maxlength="10"
-		                                                   value="${client.client_mobile}"
-													/>
-		                                        </div>
-		                                        
-		                                    </div>
-		                                </fieldset>
-		                                
-		                                <fieldset>
-		                                    <div class="form-group">
-		                                        <label class="col-sm-3 control-label">
-													Office Number
-												</label>
-		                                        <div class="col-sm-6">
-		                                            <input class="form-control"
-		                                                   type="text"
-		                                                   name="client_office_number"
-		                                                   number="true"
-		                                                   maxlength="14"
-		                                                   value="${client.client_office_number}"
-													/>
-		                                        </div>
-		                                        
-		                                    </div>
-		                                </fieldset>
-		                                
-		                                <fieldset>
-		                                    <div class="form-group">
-		                                        <label class="col-sm-3 control-label">
-													Address
-												</label>
-		                                        <div class="col-sm-6">
-		                                            <textarea class="form-control"
-		                                                   type="text"
-		                                                   name="client_address"
-		                                                   required="required"
-		                                                   rows="4"
-		                                               >${client.client_address}</textarea>
-		                                        </div>
-		                                        
-		                                    </div>
-		                                </fieldset>
-		                                
-
 		                               
-		                            </div>
+		                                <%--  <fieldset>
+		                                    <div class="form-group">
+		                                        <label class="col-sm-3 control-label">
+													 Ground_Id
+												</label>
+		                                        <div class="col-sm-6">
+		                                        <input class="form-control"
+		                                                   type="text"
+		                                                   name="ground_id"
+		                                                   required="required"
+		                                                   value="${slot.ground.ground_id}"
+		                                                   readonly="readonly"
+													/>
+		                                        </div>
+		                                        
+		                                    </div>
+		                                </fieldset>  --%>
+		                                
+		                                
+		                                  <%-- <fieldset>
+		                                    <div class="form-group">
+		                                        <label class="col-sm-3 control-label">
+													 Slot_id
+												</label>
+		                                        <div class="col-sm-6">
+		                                        <input class="form-control"
+		                                                   type="text"
+		                                                   name="slot_id"
+		                                                   required="required"
+		                                                   value="${slot.slot_id}"
+		                                                   readonly="readonly"
+													/>
+		                                        </div>
+		                                        
+		                                    </div>
+		                                </fieldset> --%> 
+		                                
+		                                 <input 
+		                                	type="hidden"
+		                                	name="ground_id"
+                                            value="${slot.ground.ground_id}"
+                                            />
+                                            
+		                                <input type="hidden" 
+			                                name="slot_id" 
+			                                value="${slot.slot_id}"
+		                                />
+		                                
+		                                 <fieldset>
+		                                    <div class="form-group">
+		                                        <label class="col-sm-3 control-label">
+													Start Time
+												</label>
+		                                        <div class="col-sm-6">
+		                                            <input class="form-control timepicker"
+		                                                   type="text"
+		                                                   name="start_time"
+		                                                   value="${slot.start_time}"
+		                                                   required="required"
+		                                                  
+													/>
+		                                        </div>
+		                                        
+		                                    </div>
+		                                </fieldset>
+		                                
+		                                <fieldset>
+		                                    <div class="form-group">
+		                                        <label class="col-sm-3 control-label">
+													End Time
+												</label>
+		                                        <div class="col-sm-6">
+		                                            <input class="form-control timepicker"
+		                                                   type="text"
+		                                                   name="end_time"
+		                                                   required="required"
+		                                                  value="${slot.end_time}"
+													/>
+		                                        </div>
+		                                        
+		                                    </div>
+		                                </fieldset>
+		                                
+		                                
+		                                <fieldset>
+		                                    <div class="form-group">
+		                                        <label class="col-sm-3 control-label">
+													Weekend (price/hour)
+												</label>
+		                                        <div class="col-sm-6">
+		                                            <input class="form-control"
+		                                                   type="text"
+		                                                   name="weekend_charge"
+		                                                   required="required"
+		                                                   value="${slot.weekend_charge}"
+													/>
+		                                        </div>
+		                                        
+		                                    </div>
+		                                </fieldset>
+		                                
+		                                <fieldset>
+		                                    <div class="form-group">
+		                                        <label class="col-sm-3 control-label">
+													Weekdays (price/hour)
+												</label>
+		                                        <div class="col-sm-6">
+		                                            <input class="form-control"
+		                                                   type="text"
+		                                                   name="weekdays_charge"
+		                                                   required="required"
+		                                                   value="${slot.weekdays_charge}"
+													/>
+		                                        </div>
+		                                        
+		                                    </div>
+		                                </fieldset>
+		                                
+
+		                                   </div>
 									<div class="card-footer text-center">
-									<c:choose>
-         
-							         <c:when test = "${client.client_id==0}">
-							            <button type="submit" class="btn btn-info btn-fill">Submit</button>
-							         </c:when>
-							         
-							        <c:otherwise>
-							             <button type="submit" class="btn btn-info btn-fill">Update</button>
-							         </c:otherwise>
-							      </c:choose>
-										
-									
-									</div>
-									
+									 <button type="submit" class="btn btn-info btn-fill">Submit</button>
+							     </div>
+								
 		  						</form>    
 	                    
 	                    
@@ -285,8 +280,29 @@
 	<script type="text/javascript">
     	$(document).ready(function(){
     		
-    		$("#addClientForm").validate();
-    	});
+    		$("#addSlotForm").validate();
+    		
+    		
+       		 $('.timepicker').datetimepicker({
+        	          format: 'H:mm',    // use this format if you want the 24hours timepicker
+       	          /*   format: 'h:mm A',    //use this format if you want the 12hours timpiecker with AM/PM toggle */
+       	            icons: {
+       	                time: "fa fa-clock-o",
+       	                date: "fa fa-calendar",
+       	                up: "fa fa-chevron-up",
+       	                down: "fa fa-chevron-down",
+       	                previous: 'fa fa-chevron-left',
+       	                next: 'fa fa-chevron-right',
+       	                today: 'fa fa-screenshot',
+       	                clear: 'fa fa-trash',
+       	                close: 'fa fa-remove'
+       	            }
+
+   			
+
+       	});
+       	});
+    
 	</script>
 
 </html>
